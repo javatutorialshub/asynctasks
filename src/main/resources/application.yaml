@@ -1,0 +1,11 @@
+user:
+  data:
+    file:
+      path: data/user-data.csv
+card:
+  data:
+    file:
+      path: data/user-card-data.json
+output:
+  file:
+    path: data/merged-user-data.json

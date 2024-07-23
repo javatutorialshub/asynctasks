@@ -1,0 +1,30 @@
+<configuration>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/asynctasks.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/asynctasks-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <!-- La taille de chaque fichier archivée est de 10MB -->
+            <maxFileSize>10MB</maxFileSize>
+            <!-- Ne garder que 30 jours au maximum -->
+            <maxHistory>30</maxHistory>
+            <!-- La taille cumulée de tous les fichiers archivés. Si > 100MB, les plus anciens fichiers archivés sont supprimés -->
+            <totalSizeCap>100GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%kvp- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
